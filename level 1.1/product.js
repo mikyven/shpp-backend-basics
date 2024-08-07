@@ -8,15 +8,7 @@ function Product(
   activeSize = "",
   quantity = 0,
   date = Date.now(),
-  reviews = [
-    {
-      ID: "0",
-      author: "",
-      date: Date.now(),
-      comment: "",
-      rating: { service: 0, price: 0, rating: 0, quality: 0 },
-    },
-  ],
+  reviews = [],
   images = [""]
 ) {
   this.ID = ID;
@@ -42,6 +34,18 @@ function Product(
   this.getDate = () => this.date;
   this.getReviews = () => this.reviews;
   this.getImages = () => this.images;
+
+  this.setID = (value) => (this.ID = value);
+  this.setName = (value) => (this.name = value);
+  this.setDescription = (value) => (this.description = value);
+  this.setPrice = (value) => (this.price = value);
+  this.setBrand = (value) => (this.brand = value);
+  this.setSizes = (value) => (this.sizes = value);
+  this.setActiveSize = (value) => (this.activeSize = value);
+  this.setQuantity = (value) => (this.quantity = value);
+  this.setDate = (value) => (this.date = value);
+  this.setReviews = (value) => (this.reviews = value);
+  this.setImages = (value) => (this.images = value);
 
   this.getReviewByID = (id) => this.reviews.find((i) => i.ID === id);
   this.getImage = (value) =>
@@ -71,46 +75,21 @@ function Product(
   };
 }
 
-const myProducts = [
-  new Product("1", "name", "desc", 1.5, "br", ["S", "M", "L"], "M", 2, null, [
-    {
-      ID: 1,
-      author: "Vasia1",
-      date: null,
-      comment: "123",
-      rating: { service: 3, price: 2, rating: 4, quality: 5 },
-    },
-    {
-      ID: 2,
-      author: "Vasia2",
-      date: null,
-      comment: "1234",
-      rating: { service: 5, price: 1, rating: 2, quality: 2 },
-    },
-    {
-      ID: 3,
-      author: "Vasia3",
-      date: null,
-      comment: "12345",
-      rating: { service: 1, price: 5, rating: 5, quality: 3 },
-    },
-  ]),
-  new Product(
-    "2",
-    "nazva",
-    "desopys",
-    5.75,
-    "Apple",
-    ["XL"],
-    "XL",
-    15,
-    null,
-    []
-  ),
-  new Product("3", "nazvb", "dAbcd", 4, "Xiaomi", ["L"], "L", 312, null, []),
-];
+function Review(
+  ID = "0",
+  author = "",
+  date = Date.now(),
+  comment = "",
+  rating = { service: 0, price: 0, rating: 0, quality: 0 }
+) {
+  this.ID = ID;
+  this.author = author;
+  this.date = date;
+  this.comment = comment;
+  this.rating = rating;
+}
 
-function searchProducts(products, search) {
+const searchProducts = (products, search) => {
   return products.filter((i) => {
     if (search.slice(-1) === "*") {
       const realSearch = search.slice(0, -1);
@@ -119,9 +98,9 @@ function searchProducts(products, search) {
       return i.name === search || i.description === search;
     }
   });
-}
+};
 
-function sortProducts(products, sortRule) {
+const sortProducts = (products, sortRule) => {
   if (!["price", "name", "ID"].includes(sortRule)) {
     return "This rule is not supported";
   }
@@ -134,4 +113,10 @@ function sortProducts(products, sortRule) {
     }
     return aValue - bValue;
   });
-}
+};
+
+const myProducts = [
+  new Product("1", "name", "desc", 1.5, "br", ["S", "M", "L"], "M", 2, null),
+  new Product("2", "nazva", "desopys", 5.75, "Apple", ["XL"], "XL", 15, null),
+  new Product("3", "nazvb", "dAbcd", 4, "Xiaomi", ["L"], "L", 312, null),
+];

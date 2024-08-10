@@ -17,7 +17,7 @@ function csvParser(csv) {
       const [x, y, name, population] = i.split(",");
       return { x, y, name, population };
     })
-    .sort((a, b) => a.population - b.population)
+    .sort((a, b) => b.population - a.population)
     .slice(0, 10)
     .reduce(
       (a, c, index) => ({

@@ -34,7 +34,7 @@ Content-Length: 35
 
 login=student&password=12345
 `,
-  5: `GET / HTTP/1.1
+  5: `GET /test.txt HTTP/1.1
 Host: student.shpp.me
 Accept: image/gif, image/jpeg, */*
 Accept-Language: en-us
@@ -80,7 +80,13 @@ Connection: Closed
 Content-Type: text/html; charset=utf-8
 
 <h1 style="color:green">FOUND</h1>`,
-  5: `please do it yourself`,
+  5: `HTTP/1.1 200 OK
+Server: Apache/2.2.14 (Win32)
+Content-Length: 12
+Connection: Closed
+Content-Type: text/html; charset=utf-8
+
+student test`,
 };
 
 const execSync = (exports.execSync = (cmd, input) => {

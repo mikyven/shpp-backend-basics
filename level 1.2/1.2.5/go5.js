@@ -27,15 +27,12 @@ function readHttpLikeInput() {
 let contents = readHttpLikeInput();
 
 function outputHttpResponse(statusCode, statusMessage, headers, body) {
-  const host = headers.Host;
   const server = "Apache/2.2.14 (Win32)";
   const contentLength = `${body}`.length;
   const connection = "Closed";
   const contentType = "text/html; charset=utf-8";
 
-  console.log(`HTTP/1.1 ${statusCode} ${statusMessage} ${
-    host ? `\nHost: ${host}` : ""
-  }
+  console.log(`HTTP/1.1 ${statusCode} ${statusMessage}
 Server: ${server}
 Content-Length: ${contentLength}
 Connection: ${connection}
@@ -45,44 +42,6 @@ ${body}`);
 }
 
 function processHttpRequest(method, uri, headers, body) {
-  // 3
-  // if (method === "GET" && uri.startsWith("/sum")) {
-  //   if (!uri.includes("?nums=")) {
-  //     outputHttpResponse(400, "Bad Request", headers, body);
-  //   } else {
-  //     const sum = uri
-  //       .slice(uri.indexOf("=") + 1)
-  //       .split(",")
-  //       .reduce((a, c) => +a + +c, 0);
-  //     outputHttpResponse(200, "OK", headers, sum);
-  //   }
-  // } else {
-  //   outputHttpResponse(404, "Not Found", headers, "not found");
-  // }
-
-  // 4
-  // if (method === "POST" && uri === "/api/checkLoginAndPassword") {
-  //   const [login, password] = body.split("&").map((i) => i.split("=")[1]);
-  //   let passwords;
-  //   try {
-  //     passwords = require("fs").readFileSync("passwords.txt", "utf8");
-  //   } catch {
-  //     outputHttpResponse(500, "Internal Server Error", "", "");
-  //     return;
-  //   }
-  //   if (passwords.includes(`${login}:${password}`)) {
-  //     outputHttpResponse(200, "OK", "", '<h1 style="color:green">FOUND</h1>');
-  //   } else {
-  //     outputHttpResponse(
-  //       404,
-  //       "Not Found",
-  //       "",
-  //       '<h1 style="color:red">NOT FOUND</h1>'
-  //     );
-  //   }
-  // }
-
-  // 5
   if (method === "GET") {
     let path = "else";
     if (headers.Host) {
@@ -131,40 +90,5 @@ function parseTcpStringAsHttpRequest(string) {
   };
 }
 
-// 2
-// http = parseTcpStringAsHttpRequest(contents);
-// console.log(JSON.stringify(http, undefined, 2));
-
-// 3
-// const request = parseTcpStringAsHttpRequest(`GET /sum?nums=1,2,3,4 HTTP/1.1
-// Host: shpp.me
-// Accept: image/gif, image/jpeg, */*
-// Accept-Language: en-us
-// Accept-Encoding: gzip, deflate
-// User-Agent: Mozilla/4.0
-
-// `);
-// processHttpRequest(...Object.values(request));
-
-// 4
-// const request =
-//   parseTcpStringAsHttpRequest(`POST /api/checkLoginAndPassword HTTP/1.1
-// Accept: */*
-// Content-Type: application/x-www-form-urlencoded
-// User-Agent: Mozilla/4.0
-// Content-Length: 35
-
-// login=student&password=12345
-// `);
-// processHttpRequest(...Object.values(request));
-
-// 5
-const request = parseTcpStringAsHttpRequest(`GET /test.txt HTTP/1.1
-Host: student.shpp.me
-Accept: image/gif, image/jpeg, */*
-Accept-Language: en-us
-Accept-Encoding: gzip, deflate
-User-Agent: Mozilla/4.0
-
-`);
-processHttpRequest(...Object.values(request));
+const http = parseTcpStringAsHttpRequest(contents);
+processHttpRequest(...Object.values(http));

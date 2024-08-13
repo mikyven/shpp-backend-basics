@@ -1,5 +1,4 @@
 // цей файл потрібно буде дописати...
-const fs = require("fs");
 
 // не звертайте увагу на цю функцію
 // вона потрібна для того, щоб коректно зчитувати вхідні данні
@@ -24,20 +23,19 @@ function readHttpLikeInput() {
   return res;
 }
 
+let contents = readHttpLikeInput();
+
 function outputHttpResponse(statusCode, statusMessage, headers, body) {
-  const host = headers.Host;
   const server = "Apache/2.2.14 (Win32)";
-  const contentLength = `${body}`.length;
   const connection = "Closed";
   const contentType = "text/html; charset=utf-8";
+  const contentLength = `${body}`.length;
 
-  console.log(`HTTP/1.1 ${statusCode} ${statusMessage} ${
-    host ? `\nHost: ${host}` : ""
-  }
+  console.log(`HTTP/1.1 ${statusCode} ${statusMessage}
 Server: ${server}
-Content-Length: ${contentLength}
 Connection: ${connection}
 Content-Type: ${contentType}
+Content-Length: ${contentLength}
 
 ${body}`);
 }
@@ -81,12 +79,5 @@ function parseTcpStringAsHttpRequest(string) {
   };
 }
 
-const request = parseTcpStringAsHttpRequest(`GET /sum?nums=1,2,3,4 HTTP/1.1
-Host: shpp.me
-Accept: image/gif, image/jpeg, */*
-Accept-Language: en-us
-Accept-Encoding: gzip, deflate
-User-Agent: Mozilla/4.0
-
-`);
-processHttpRequest(...Object.values(request));
+http = parseTcpStringAsHttpRequest(contents);
+processHttpRequest(...Object.values(http));

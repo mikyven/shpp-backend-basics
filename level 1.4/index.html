@@ -8,6 +8,26 @@
 </head>
 
 <body>
+  <div class="detailed-data-block">
+    <div class="task task-10">
+      <h3>Task 10</h3>
+      <div class="coordinates">
+        <p id="coordinate" class="X">X:</p>
+        <p id="coordinate" class="Y">Y:</p>
+      </div>
+    </div>
+    <div class="task task-11">
+      <h3>Task 11</h3>
+      <div class="selected-language"></div>
+    </div>
+    <div class="task task-12">
+      <h3>Task 12</h3>
+      <div class="location">
+        <p id="latitude"></p>
+        <p id="longitude"></p>
+      </div>
+    </div>
+  </div>
   <div class="task task-1">
     <h2>Task 1</h2>
     <div id="black-square_first"></div>
@@ -52,18 +72,69 @@
     <div class="green-rectangle hidden"></div>
     <label>
       Write something:
-      <input class="switch-input">
+      <input type="text" class="switch-input">
     </label>
   </div>
   <div class="task task-8">
     <h2>Task 8</h2>
     <label>
       Enter image URL
-      <input required class="image-input">
+      <input type="text" class="image-input">
     </label>
     <button class="show-image-button">Show image</button>
   </div>
+  <div class="task task-9">
+    <h2>Task 9</h2>
+    <label>
+      Enter image URLs (splitted by new line):
+      <textarea class="image-textarea"></textarea>
+    </label>
+    <button class="show-images-button">Show images</button>
+  </div>
+  <div class="task task-13">
+    <h2>Task 13</h2>
+    <label>
+      Write something:
+      <input type="text" placeholder="Saved using localStorage" class="local-input">
+      <input type="text" placeholder="Saved using cookies" class="cookie-input">
+      <input type="text" placeholder="Saved using sessionStorage" class="session-input">
+    </label>
+  </div>
+  <div class="task task-14">
+    <button class="scroll-button hidden">Go up</button>
+  </div>
+  <div class="task task-15">
+    <h2>Task 15</h2>
+    <div class="outer-block">
+      <div class="inner-block"></div>
+    </div>
+  </div>
+  <div class="task task-16">
+    <h2>Task 16</h2>
+    <button class="show-block-button">Show blocking background</button>
+    <div class="blocking-background hidden"></div>
+  </div>
+  <div class="task task-17">
+    <h2>Task 17</h2>
+    <form>
+      <input type="submit" value="GO">
+    </form>
+  </div>
+  <div class="task task-18">
+    <h2>Task 18</h2>
+    <form class="dnd-form">
+      <label class="file-label">
+        <input class="file-input" id="file-input" type="file" multiple>
+        <div class="form-content">
+          <i class="fa-solid fa-upload"></i>
+          <p>Choose file or drag it here</p>
+        </div>
+      </label>
+      <p class="result"></p>
+    </form>
+  </div>
 
+  <script src="https://kit.fontawesome.com/5c1413da0e.js" crossorigin="anonymous"></script>
   <script src="script.js"></script>
 </body>
 
